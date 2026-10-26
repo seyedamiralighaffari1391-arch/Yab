@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>یاب | پنل مدیریت</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div id="loginView" class="wrap">
+  <div class="card login">
+    <div class="brand"><div class="logo">ی</div><div><h1>پنل مدیریت یاب</h1><p>ورود امن مدیران</p></div></div>
+    <div class="notice info" style="margin-top:18px">برای اتصال به پروژه واقعی، آدرس پروژه و کلید عمومی (anon/publishable) را در تنظیمات اتصال وارد کنید. کلید service_role را هرگز اینجا وارد نکنید.</div>
+    <div class="field"><label for="cfgUrl">آدرس پروژه Supabase</label><input id="cfgUrl" placeholder="https://YOUR_PROJECT.supabase.co" autocomplete="url"></div>
+    <div class="field"><label for="cfgKey">کلید عمومی Supabase</label><input id="cfgKey" placeholder="sb_publishable_... یا anon key" autocomplete="off"></div>
+    <div class="actions"><button class="primary" id="saveConfig">ذخیره تنظیمات و ادامه</button><button id="demoBtn">حالت پیش‌نمایش بدون داده واقعی</button></div>
+    <hr style="border-color:var(--line);margin:20px 0">
+    <div class="field"><label for="email">ایمیل مدیر</label><input id="email" type="email" autocomplete="username" placeholder="ایمیل حساب مدیر"></div>
+    <div class="field"><label for="password">رمز عبور</label><input id="password" type="password" autocomplete="current-password" placeholder="رمز عبور Supabase Auth"></div>
+    <div class="actions"><button class="primary" id="loginBtn">ورود به پنل</button></div>
+    <div id="loginMsg" class="foot">پنل فقط برای حساب‌هایی مجاز است که شناسه آن‌ها در جدول yab_admins ثبت شده باشد. حالت پیش‌نمایش هیچ داده‌ای را به عنوان آمار واقعی نشان نمی‌دهد.</div>
+  </div>
+</div>
+<div id="appView" class="wrap hidden">
+  <header class="top">
+    <div class="brand"><div class="logo">ی</div><div><h1>یاب | مدیریت مرکزی</h1><p id="connectionStatus">وضعیت اتصال نامشخص</p></div></div>
+    <div class="top-actions"><span id="modePill" class="pill warn">پیش‌نمایش</span><button id="refreshBtn">↻ تازه‌سازی</button><button id="settingsBtn">تنظیمات اتصال</button><button id="logoutBtn">خروج</button></div>
+  </header>
+  <div id="globalNotice" class="notice hidden"></div>
+  <div class="layout">
+    <nav class="sidebar" aria-label="بخش‌های پنل">
+      <button class="navbtn active" data-page="overview"><span class="navicon">▦</span>نمای کلی</button>
+      <button class="navbtn" data-page="devices"><span class="navicon">▣</span>دستگاه‌ها و بازدیدها</button>
+      <button class="navbtn" data-page="errors"><span class="navicon">⚑</span>گزارش خطاها</button>
+      <button class="navbtn" data-page="words"><span class="navicon">📚</span>اصلاحات واژگان</button>
+      <button class="navbtn" data-page="patterns"><span class="navicon">⌘</span>الگوهای صرفی</button>
+      <button class="navbtn" data-page="releases"><span class="navicon">⬆</span>نسخه‌ها</button>
+      <button class="navbtn" data-page="banners"><span class="navicon">▤</span>بنرهای تبلیغاتی</button>
+      <button class="navbtn" data-page="messages"><span class="navicon">✉</span>پیام کاربران</button>
+      <button class="navbtn" data-page="maintenance"><span class="navicon">⚙</span>حالت تعمیر</button>
+      <button class="navbtn" data-page="lab"><span class="navicon">⚗</span>آزمایشگاه ریشه‌یابی</button>
+      <button class="navbtn" data-page="backup"><span class="navicon">◷</span>پشتیبان و تاریخچه</button>
+    </nav>
+    <main id="main" class="main" aria-live="polite"></main>
+  </div>
+  <p class="foot">حریم خصوصی: ثبت دستگاه به User-Agent و اطلاعات عمومی مرورگر محدود است. مرورگر معمولاً مدل دقیق گوشی را در اختیار سایت نمی‌گذارد؛ مدل گوشی ممکن است نامشخص یا تقریبی باشد. آدرس IP و موقعیت مکانی دقیق در این پنل جمع‌آوری نمی‌شود. پیش از فعال‌سازی در سایت عمومی، اطلاعیه حریم خصوصی را منتشر کنید.</p>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/admin-core.js"></script>
+</body>
+</html>
